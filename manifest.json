@@ -11,7 +11,7 @@
     }
   ],
   "host_permissions": ["*://*.youtube.com/*"],
-  "permissions": ["activeTab", "scripting"],
+  "permissions": ["activeTab", "scripting", "tabs"],
   "action": {
     "default_popup": "popup.html"
   }
