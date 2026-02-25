@@ -4,8 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FocusTube</title>
+    <link rel="stylesheet" href="/styles/popup.css" />
   </head>
   <body>
-    <h1>HELLO STOP GETTING DISTRACTED</h1>
+    <form id="focus-settings">
+      <h2>Settings</h2>
+
+      <label>
+        <input type="checkbox" name="hideRelatedVideos" />
+        Hide related videos
+      </label>
+      <br />
+
+      <label>
+        <input type="checkbox" name="hideHomepageVideos" />
+        Hide homepage videos
+      </label>
+      <br />
+
+      <label>
+        <input type="checkbox" name="hideComments" />
+        Hide comments
+      </label>
+      <br />
+
+      <label>
+        <input type="checkbox" name="hideShorts" />
+        Hide shorts
+      </label>
+      <br />
+    </form>
+    <button>Disable focus mode</button>
   </body>
 </html>

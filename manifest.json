@@ -1,19 +1,17 @@
 {
   "name": "FocusTube",
-  "version": "1.0",
+  "version": "0.1.0",
   "description": "Removes distracting elements from YouTube: Homepage videos, recommended videos, sidebars, shorts, etc.",
   "manifest_version": 3,
-  "background": {},
   "content_scripts": [
     {
       "matches": ["*://*.youtube.com/*"],
-      "js": [""],
+      "js": ["scripts/content.js"],
       "run_at": "document_end"
     }
   ],
-
   "host_permissions": ["*://*.youtube.com/*"],
-  "permissions": ["alarms"],
+  "permissions": ["activeTab", "scripting"],
   "action": {
     "default_popup": "popup.html"
   }
