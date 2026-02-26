@@ -1,15 +1,48 @@
 const form = document.getElementById("focus-settings");
-console.log("asef");
+const button = document.getElementById("toggle-button");
+
+const relatedInput = document.getElementById("relatedVideosInput");
+const homepageInput = document.getElementById("homepageInput");
+const commentsInput = document.getElementById("commentsInput");
+
+initCheckboxes();
 
 form.addEventListener("change", () => {
+  console.log("form changed");
+  chrome.storage.local.set({
+    [relatedVideosInput.name]: relatedVideosInput.checked,
+  });
+  chrome.storage.local.set({ [homepageInput.name]: homepageInput.checked });
+  chrome.storage.local.set({ [commentsInput.name]: commentsInput.checked });
+});
+
+button.addEventListener("click", () => {
   const formData = new FormData(form);
-  const settings = {};
 
   formData.forEach((value, key) => {
-    settings[key] = value === "on";
-  });
-  console.log(settings);
-  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    chrome.tabs.sendMessage(tabs[0].id, { type: "UPDATE_SETTINGS", settings });
+    chrome.storage.local.get([key]).then((result) => {
+      console.log(result[key]);
+    });
   });
 });
+
+async function initCheckboxes() {
+  const defaults = {
+    hideRelatedVideos: false,
+    hideHomepageVideos: false,
+    hideComments: false,
+  };
+
+  await chrome.storage.local.get(Object.keys(defaults)).then((result) => {
+    for (const [key, defaultValue] of Object.entries(defaults)) {
+      if (!(key in result)) {
+        chrome.storage.local.set({ [key]: defaultValue });
+      }
+    }
+  });
+
+  const result = await chrome.storage.local.get(Object.keys(defaults));
+  relatedInput.checked = result.hideRelatedVideos;
+  homepageInput.checked = result.hideHomepageVideos;
+  commentsInput.checked = result.hideComments;
+}
