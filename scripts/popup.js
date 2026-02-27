@@ -5,6 +5,7 @@ const relatedInput = document.getElementById("relatedVideosInput");
 const homepageInput = document.getElementById("homepageInput");
 const commentsInput = document.getElementById("commentsInput");
 
+// initialize checkboxes and focus button
 initCheckboxes();
 chrome.storage.local.get(["focusModeEnabled"], (result) => {
   focusButton.innerText = result.focusModeEnabled
@@ -12,6 +13,7 @@ chrome.storage.local.get(["focusModeEnabled"], (result) => {
     : "Enable focus";
 });
 
+// set variables in local storage when form is changed
 form.addEventListener("change", () => {
   console.log("form changed");
   chrome.storage.local.set({
@@ -21,6 +23,7 @@ form.addEventListener("change", () => {
   chrome.storage.local.set({ [commentsInput.name]: commentsInput.checked });
 });
 
+// change focus mode when focus button is clicked
 focusButton.addEventListener("click", () => {
   chrome.storage.local.get("focusModeEnabled").then((result) => {
     if (!result.focusModeEnabled) {
@@ -33,6 +36,7 @@ focusButton.addEventListener("click", () => {
   });
 });
 
+// asynchronous function to initialize checkboxes when the popup is loaded
 async function initCheckboxes() {
   const defaults = {
     hideRelatedVideos: false,

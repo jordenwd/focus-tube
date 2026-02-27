@@ -4,9 +4,10 @@ const observer = new MutationObserver(() => {
   const relatedVids = document.getElementById("related");
   const comments = document.getElementById("comments");
 
-  // Check if the current page is the homepage
+  // check if the current page is the homepage
   const isHomepage = window.location.pathname === "/";
 
+  // gets keys for focus mode and hidden flags and sets properties accordingly
   chrome.storage.local.get(
     [
       "focusModeEnabled",
