@@ -1,11 +1,16 @@
 const form = document.getElementById("focus-settings");
-const button = document.getElementById("toggle-button");
+const focusButton = document.getElementById("toggle-button");
 
 const relatedInput = document.getElementById("relatedVideosInput");
 const homepageInput = document.getElementById("homepageInput");
 const commentsInput = document.getElementById("commentsInput");
 
 initCheckboxes();
+chrome.storage.local.get(["focusModeEnabled"], (result) => {
+  focusButton.innerText = result.focusModeEnabled
+    ? "Disable focus"
+    : "Enable focus";
+});
 
 form.addEventListener("change", () => {
   console.log("form changed");
@@ -16,13 +21,15 @@ form.addEventListener("change", () => {
   chrome.storage.local.set({ [commentsInput.name]: commentsInput.checked });
 });
 
-button.addEventListener("click", () => {
-  const formData = new FormData(form);
-
-  formData.forEach((value, key) => {
-    chrome.storage.local.get([key]).then((result) => {
-      console.log(result[key]);
-    });
+focusButton.addEventListener("click", () => {
+  chrome.storage.local.get("focusModeEnabled").then((result) => {
+    if (!result.focusModeEnabled) {
+      focusButton.innerText = "Disable focus";
+      chrome.storage.local.set({ ["focusModeEnabled"]: true });
+      return;
+    }
+    focusButton.innerText = "Enable focus";
+    chrome.storage.local.set({ ["focusModeEnabled"]: false });
   });
 });
 
@@ -32,6 +39,8 @@ async function initCheckboxes() {
     hideHomepageVideos: false,
     hideComments: false,
   };
+
+  function setFocusButton() {}
 
   await chrome.storage.local.get(Object.keys(defaults)).then((result) => {
     for (const [key, defaultValue] of Object.entries(defaults)) {

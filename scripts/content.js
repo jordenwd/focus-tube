@@ -8,16 +8,23 @@ const observer = new MutationObserver(() => {
   const isHomepage = window.location.pathname === "/";
 
   chrome.storage.local.get(
-    ["hideHomepageVideos", "hideRelatedVideos", "hideComments"],
+    [
+      "focusModeEnabled",
+      "hideHomepageVideos",
+      "hideRelatedVideos",
+      "hideComments",
+    ],
     (result) => {
-      if (isHomepage && homepage) {
-        homepage.hidden = result.hideHomepageVideos;
-      }
-      if (relatedVids) {
-        relatedVids.hidden = result.hideRelatedVideos;
-      }
-      if (comments) {
-        comments.hidden = result.hideComments;
+      if (result.focusModeEnabled) {
+        if (isHomepage && homepage) {
+          homepage.hidden = result.hideHomepageVideos;
+        }
+        if (relatedVids) {
+          relatedVids.hidden = result.hideRelatedVideos;
+        }
+        if (comments) {
+          comments.hidden = result.hideComments;
+        }
       }
     },
   );
