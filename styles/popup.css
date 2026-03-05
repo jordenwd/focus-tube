@@ -1,3 +1,8 @@
+html {
+  border-left: #0056b3 10px inset;
+  border-right: #0056b3 10px inset;
+  border-bottom: #0056b3 10px inset;
+}
 body {
   padding: 20px;
 }

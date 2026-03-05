@@ -44,8 +44,6 @@ async function initCheckboxes() {
     hideComments: false,
   };
 
-  function setFocusButton() {}
-
   await chrome.storage.local.get(Object.keys(defaults)).then((result) => {
     for (const [key, defaultValue] of Object.entries(defaults)) {
       if (!(key in result)) {

@@ -5,35 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FocusTube</title>
     <link rel="stylesheet" href="/styles/popup.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
     <script src="scripts/popup.js" defer></script>
   </head>
   <body>
-    <form id="focus-settings">
-      <h2>Settings</h2>
+    <form id="focus-settings" class="p-3 border rounded">
+      <img src="./assets/1x/logo-sized.png" alt="FocusTubeLogo" id="logo" />
 
-      <label>
+      <div class="form-check mb-2">
         <input
           type="checkbox"
           name="hideRelatedVideos"
           id="relatedVideosInput"
+          class="form-check-input"
         />
-        Hide related videos
-      </label>
-      <br />
+        <label class="form-check-label" for="relatedVideosInput">
+          Hide related videos
+        </label>
+      </div>
 
-      <label>
-        <input type="checkbox" name="hideHomepageVideos" id="homepageInput" />
-        Hide homepage videos
-      </label>
-      <br />
+      <div class="form-check mb-2">
+        <input
+          type="checkbox"
+          name="hideHomepageVideos"
+          id="homepageInput"
+          class="form-check-input"
+        />
+        <label class="form-check-label" for="homepageInput">
+          Hide homepage videos
+        </label>
+      </div>
 
-      <label>
-        <input type="checkbox" name="hideComments" id="commentsInput" />
-        Hide comments
-      </label>
-      <br />
-      <br />
+      <div class="form-check mb-3">
+        <input
+          type="checkbox"
+          name="hideComments"
+          id="commentsInput"
+          class="form-check-input"
+        />
+        <label class="form-check-label" for="commentsInput">
+          Hide comments
+        </label>
+      </div>
     </form>
-    <button id="toggle-button">Enable focus</button>
+    <button id="toggle-button" class="btn btn-primary w-100">
+      Enable focus
+    </button>
   </body>
 </html>
