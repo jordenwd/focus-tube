@@ -1,10 +1,10 @@
 {
   "name": "FocusTube",
   "icons": {
-    "16": "./assets/logos/focustube-logo-16.png",
-    "32": "./assets/logos/focustube-logo-32.png",
-    "48": "./assets/logos/focustube-logo-48.png",
-    "128": "./assets/logos/focustube-logo-128.png"
+    "16": "/assets/logos/focustube-logo-16.png",
+    "32": "/assets/logos/focustube-logo-32.png",
+    "48": "/assets/logos/focustube-logo-48.png",
+    "128": "/assets/logos/focustube-logo-128.png"
   },
   "version": "0.1.0",
   "description": "Removes distracting elements from YouTube: Homepage videos, recommended videos, sidebars, shorts, etc.",
